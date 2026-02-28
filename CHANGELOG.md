@@ -1,0 +1,125 @@
+# Changelog
+
+## v1.8.4 (2026-02-28) — Scan-First Shortcut Discovery
+
+- 🔍 **Scan-first approach** — Scans ALL `.lnk` files in 4 locations (User Start Menu, Public Start Menu, Desktop, TaskBar), matches by TargetPath regex instead of hardcoded filenames
+- 🎯 **Zero hardcoded names** — Uses `IDE_EXE_PATTERN` regex (`antigravity|cursor|windsurf|trae|code`) on TargetPath. Works regardless of shortcut filename
+- 📂 **Recursive Start Menu** — Scans subfolders (e.g. `Programs\Antigravity\`, `Programs\Visual Studio Code\`) 1 level deep
+- 🆕 **`_collectLnkFiles()`** — Efficient .lnk file collector with optional recursive scan
+
+## v1.8.1 (2026-02-28) — README Rewrite
+
+- 📝 **Marketing-focused README** — Compelling copy, value proposition table, cleaner feature descriptions, removed external links
+
+## v1.8.0 (2026-02-28) — Shared i18n Module
+
+- 🌐 **Unified i18n system** — Single `i18n.js` module for all translations (settings panel + dialogs + status bar)
+- 🗑️ **Removed 270 lines** of inline i18n from settings-panel.js
+- 🌍 **All dialogs localized** — Welcome, CDP setup, offline warning, error messages now follow language setting (EN/VI/ZH/JA)
+- 📦 **Single source of truth** — Change a translation once, updates everywhere
+
+## v1.7.8 (2026-02-28) — English-Only Dialogs
+
+- 🌐 **All dialogs now in English** — Welcome message, CDP setup prompt, CDP offline warning, status bar tooltip, and error messages all translated from Vietnamese to English
+
+## v1.7.7 (2026-02-28) — Changelog Cleanup
+
+- 📝 **English-only changelog** — Removed all non-English text, consolidated minor version entries, removed external repo references
+
+## v1.7.6 (2026-02-28) — Background Mode Default ON
+
+- 🔄 **Background mode ON by default** — Multi-tab cycling now works out of the box, zero config needed. Toggle still available in Safety & Advanced section.
+
+## v1.7.5 (2026-02-28) — Fix Runtime Errors
+
+- 🐛 **Fix 132 uncaught errors** — Removed dead references to `commandPollTimer`/`startCommandPolling`/`stopCommandPolling` (leftover from native polling removed in v1.7.0)
+
+## v1.7.4 (2026-02-28) — Settings Panel Cleanup
+
+- 🗑️ **Removed Telegram** — Entire Telegram integration removed from settings panel (HTML, i18n, JS handlers, export/import)
+- 🔇 **Hidden BG badge** — Background mode badge no longer shown in status badges
+- 📂 **Safety & Advanced collapsed** — Section now collapsed by default, less overwhelming for new users
+- 🧹 **Cleaned tooltip** — Status bar tooltip no longer shows Background/Telegram status
+
+## v1.7.3 (2026-02-28) — Fix All Shortcuts + Smart Popup
+
+- 🔧 **Modify ALL shortcuts** — Start Menu, Desktop, AND Taskbar pinned icon all get CDP flag
+- 🔇 **Smart popup suppress** — After first successful setup, CDP-offline events show silent status bar warning
+- 🔔 **Modal Setup Dialog** — Setup popup now uses `modal: true`, bypasses Do Not Disturb mode
+- 📌 **Persistent Status Bar Warning** — Warning stays visible when user postpones, click to re-trigger
+- ⚙️ **CDP Status in Settings** — Shows Active/Offline banner with 1-click setup button (i18n: EN/VI/ZH/JA)
+
+## v1.7.1 (2026-02-27) — Zero-Config Auto-Setup
+
+- 🚀 **Auto-Setup CDP** — Extension auto-prompts "Setup & Restart" when CDP is not enabled — 1 click, 1 time only
+- 🌍 **Cross-Platform Support** — Windows (.lnk modify), macOS (wrapper script), Linux (.desktop modify)
+- 🔄 **IDE Update Recovery** — Auto-detects CDP lost after IDE update, prompts 1-click fix
+- 🔧 **New `relauncher.js`** — Complete rewrite of cross-platform relaunch mechanism
+
+## v1.7.0 (2026-02-27) — 100% CDP Architecture
+
+- 🏗️ **Removed native command polling entirely** — definitive slash command fix:
+  - Root cause: `executeCommand()` fired blindly every 1s → intercepted slash commands
+  - Extension now 100% CDP-only — no `executeCommand()` calls for accept/run/allow
+- 🗑️ **Removed**: `ACCEPT_COMMANDS`, `PATTERN_COMMAND_MAP`, `startCommandPolling()`, `discoverCommands()`, keyboard fallback
+- ⚠️ **Requires CDP**: `--remote-debugging-port=9222` flag needed for auto-accept functionality
+
+## v1.6.0–v1.6.1 (2026-02-27) — Zero-Config UX
+
+- 🎉 **Zero-Config Install** — Extension works immediately, no CDP setup required
+- ⚡ **Native Commands First** — Uses IDE-native accept/run commands as primary method
+- 🔄 **Pattern → Command Mapping** — Click patterns map to specific native commands
+- 🏥 **Health Check System** — Monitors CDP connection, auto-degrades gracefully
+- 🔍 **Auto-Discovery** — Finds new IDE accept commands every 5 minutes
+
+## v1.5.0–v1.5.3 (2026-02-27) — Resilience & Control
+
+- 🎯 **Approval dialog detection** — Only clicks elements inside real approval dialogs (checks for sibling Reject/Deny/Cancel buttons)
+- 🎛️ **Pattern-Mapped Commands** — Disable "Run" → `terminalCommand.run` stops firing
+- ⚡ **Health Check** — CDP monitored every 30s, auto-degrades after 3 failures, auto-recovers
+- 🔄 **Command Discovery** — Rediscovers IDE commands every 5 minutes
+- 🛡️ **Dropdown detection** — Structural fix for slash/mention conflict using ancestor role checks
+
+## v1.4.0–v1.4.6 (2026-02-27) — Settings Refactor & Slash Fix
+
+- ✨ **Settings Panel Refactor** — Complete overhaul of settings UI
+- 🎯 **Click patterns** — 3-column grid with instant-save toggles + custom patterns
+- 🔀 **Merged Safety + Advanced** sections into single collapsible section
+- ⚡ **Smart typing debounce** — Pauses auto-clicking during active typing (1.5s cooldown)
+- 📊 **Stats count-up animation** — Smooth count-up with easing
+- ➕ **5 new patterns**: Accept, Enable, Install, Update, Overwrite
+- 📊 **Fix stats real-time display** — Delta-based stats collection with live status bar updates
+
+## v1.3.0–v1.3.1 (2026-02-27) — Status Bar & Safety
+
+- 📊 **Status bar accept count** with rich tooltip
+- 🛡️ **Fix false clicks** on workflow suggestions and @mentions
+- 🚫 **Input area exclusion** — Skip buttons inside textarea, input, contenteditable
+- 🏷️ **Button tag validation** — Only click `<button>`, `<a>`, `[role=button]`
+- 📐 **Minimum size check** — Buttons must be ≥20×12px
+
+## v1.2.0–v1.2.9 (2026-02-27) — UI Polish & Branding
+
+- 🎨 **Redesigned status bar** — Single smart item with rich tooltip, dynamic badges
+- 🌐 **i18n support** (EN/VI/ZH/JA) for entire settings panel
+- 🏷️ **Agent Approve branding** throughout
+- 🔖 **Smart dynamic badges** (ON/OFF/Schedule) in status bar
+- 📡 **Telegram Bot Integration** — Remote monitoring and control (removed in v1.7.4)
+
+## v1.1.0 (2026-02-27) — Core Rewrite
+
+- 🔧 **Complete rewrite** of `auto_accept.js` — Clean, modular, auditable code
+- ✨ `expandCollapsedSections()` — Auto-expand hidden steps requiring input
+- ✨ `clickAlwaysRunDropdown()` — Auto-click "Always run" in permission dropdowns
+- 🛡️ Improved `isInConversationArea()` — Exclusion-first strategy to prevent false positives
+
+## v1.0.0 (2026-02-27) — Initial Release
+
+- 🎉 **Agent Auto Approve** — Auto-click configurable patterns (Allow, Continue, Retry, etc.)
+- 🔄 **Background Mode** — Multi-tab CDP cycling
+- 📜 **Auto Scroll** — Smart chat panel detection
+- 🔒 **Safe Click & Diff Protection**
+- 🧠 **Smart Accept** — Blocks dangerous commands
+- 📡 **HTTP Live Sync** — Real-time settings push
+- ⏰ **Auto-Schedule & Smart Frequency**
+- 📊 **ROI Dashboard** with session history
