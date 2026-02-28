@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.9.5 (2026-03-01) — Streamlined Click Patterns
+
+- 🎯 **10 essential patterns** — Reduced from 24 to 10 focused defaults: Run, Accept, Accept all, Allow, Always Allow, Keep Waiting, Retry, Continue, Allow Once, Allow This Con
+- 🔄 **Force reset for all users** — All existing users get patterns overwritten to the new clean defaults
+- 🗑️ **Removed**: Run All, Run Command, Apply, Execute, Confirm, Proceed, Yes, Ok, Save, Approve, Enable, Install, Update, Overwrite
+
 ## v1.9.4 (2026-03-01) — Auto-Merge Click Patterns
 
 - 🔄 **Auto-merge new defaults** — Existing users automatically receive new click patterns on extension update without losing their custom settings
