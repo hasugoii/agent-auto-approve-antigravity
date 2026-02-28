@@ -1,5 +1,88 @@
 # Changelog
 
+## v1.9.4 (2026-03-01) — Auto-Merge Click Patterns
+
+- 🔄 **Auto-merge new defaults** — Existing users automatically receive new click patterns on extension update without losing their custom settings
+
+## v1.9.3 (2026-03-01) — Unified Click Patterns
+
+- 🔗 **24 unified patterns** — Synced DEFAULT_PATTERNS across `extension.js`, `settings-panel.js`, `compositor.js` — all 3 sources now identical
+- ➕ **New patterns**: Run, Apply, Execute, Confirm, Allow Once, Allow This Con, Proceed, Continue, Yes, OK, Save, Approve, Keep Waiting, Enable, Install, Update, Overwrite
+
+## v1.9.2 (2026-03-01) — 3-Layer Slash Protection
+
+- 🛡️ **Widget detection** — `isSuggestionWidgetVisible()` checks for suggestion overlays before clicking
+- 🎭 **Role exclusion** — `isAcceptButton()` skips elements with `role=option/listbox/menuitem`
+- 🔽 **Dropdown guard** — `clickAlwaysRunDropdown()` skips when suggestion widget is visible
+
+## v1.9.1 (2026-03-01) — README Rewrite
+
+- 📝 **Local README** — Concise with GitHub distribution link
+- 🌍 **Distribution README** — 4-language (EN/VI/ZH/JA) marketing copy with version badges
+
+## v1.9.0 (2026-03-01) — Status Bar Redesign & Typing Guard
+
+- 🎨 **Status bar redesign** — Full name "Agent Auto Approve", hover tooltip with Turn ON/OFF + Settings links
+- 🔘 **Panel ON/OFF toggle** — Prominent switch at settings panel header with green/red indicator
+- ⌨️ **Typing Guard** — Pauses auto-click when user types `/` (slash commands) or `@` (mentions) in chat input, 2s grace period
+- 📊 **Incremental stats refresh** — Stats update every 5s via `postMessage` without re-rendering HTML, preserves collapse state
+- 🏷️ **Lifetime chip** — Lifetime stats badge in dashboard
+
+## v1.8.15 (2026-03-01) — Defaults Button Fix
+
+- 🔧 **Factory reset** — "Defaults" button now resets to factory `DEFAULT_PATTERNS` (including Accept pattern)
+
+## v1.8.14 (2026-03-01) — WebView Escaping Fix
+
+- 🐛 **Restore `\\n` escaping** — Fixed all buttons broken since v1.8.12 by restoring double-escaped newlines in WebView `<script>` templates
+
+## v1.8.13 (2026-03-01) — JS Escaping Fix
+
+- 🐛 **Fix broken JS escaping** — Settings panel buttons and toggles now work correctly after escaping regression
+
+## v1.8.12 (2026-03-01) — Emoji Fix
+
+- 🐛 **Fix emoji display** — Replace double-escaped unicode (`\\uXXXX` text) with actual emoji characters in settings panel
+
+## v1.8.11 (2026-03-01) — Settings Panel Redesign
+
+- ✨ **Glassmorphism design** — Modern frosted-glass settings panel
+- 🔀 **Toggle switches** — Replace checkboxes with smooth toggle switches
+- 🎚️ **Range sliders** — For frequency and scroll config
+- 🍞 **Toast feedback** — Non-intrusive save confirmations
+- 🐛 **Fix banned commands bug** — Banned commands now load from storage on activation
+- 🕐 **Local time in history** — Session history shows local timestamps
+
+## v1.8.10 (2026-03-01) — Feature Cleanup
+
+- 📝 **README rewrite** — Status bar tooltip guide, removed outdated commands reference
+
+## v1.8.9 (2026-03-01) — Dead Code Removal
+
+- 🗑️ **Delete `auto_accept.js`** — Removed dead legacy code
+- 🔧 **Fix click patterns** — Corrected pattern matching
+- 🗑️ **Remove `autoFixCDP` redundancy** — Consolidated with existing setup flow
+
+## v1.8.8 (2026-02-28) — Current Conversation Only
+
+- 🗑️ **Removed Background Mode entirely** — Tab cycling interrupted user input
+- 🎯 **Current conversation only** — Extension accepts on visible conversation, user switches manually
+- 🗑️ **Removed**: BG toggle, lock file, BG status bar badge, compositor BG script loading, `hideBackgroundOverlay()`
+
+## v1.8.7 (2026-02-28) — Fix BG Infinite Loop
+
+- 🐛 **Remove `antigravityLoop()` new-conversation click** — Was creating infinite conversations every 6s
+- ⏱️ **Idle backoff** — Poll interval increases from 3s to 10s when no activity
+- 🔒 **Tabs > 1 guard** — Tab cycling only when multiple tabs exist
+
+## v1.8.6 (2026-02-28) — Remove Overlay
+
+- 🗑️ **Overlay removed completely** — Background overlay was blocking agent panel, status bar tooltip is sufficient
+
+## v1.8.5 (2026-02-28) — Compact Overlay
+
+- 📐 **Compact mini-overlay** — Smaller overlay that no longer blocks agent panel
+
 ## v1.8.4 (2026-02-28) — Scan-First Shortcut Discovery
 
 - 🔍 **Scan-first approach** — Scans ALL `.lnk` files in 4 locations (User Start Menu, Public Start Menu, Desktop, TaskBar), matches by TargetPath regex instead of hardcoded filenames
