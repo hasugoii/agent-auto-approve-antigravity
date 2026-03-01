@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.9.24 (2026-03-02) — 📋 Unified Click Log
+
+- 📋 **Always-on click log** — Rejected buttons with reasons logged to History & Data (no toggle needed)
+- 🔄 **Dedup** — Consecutive identical rejects grouped with ×N count badge instead of spamming
+- 🔍 **Filter buttons** — All / ✅ Clicks / ⚠️ Rejected filter tabs in History section
+- 🗑️ **Removed Diagnostic Mode toggle** — No longer needed, tracking is always-on with zero overhead
+- 🎨 **History UI** — 3 color-coded types: ✅ accept (green), ⚠️ reject (yellow), 🚫 block (red)
+
 ## v1.9.23 (2026-03-02) — 🚨 Hotfix: Missing Brace Regression
 
 - 🐛 **Fix v1.9.22 regression** — Missing `}` closing brace in `else` block of `findButton()` caused syntax error in generated permission script → ALL click patterns stopped working
