@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.9.23 (2026-03-02) — 🚨 Hotfix: Missing Brace Regression
+
+- 🐛 **Fix v1.9.22 regression** — Missing `}` closing brace in `else` block of `findButton()` caused syntax error in generated permission script → ALL click patterns stopped working
+- 🔧 **1-character fix** — Added missing `}` that was lost when wrapping diag code in `if(DIAG_MODE){}`
+
 ## v1.9.22 (2026-03-02) — 🔍 Diagnostic Mode Toggle
 
 - 🔍 **Diagnostic Mode toggle** — Settings Panel → Advanced → ON/OFF switch to enable `diag:{}` logging
