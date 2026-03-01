@@ -1,6 +1,6 @@
 # ⚡ Agent Auto Approve
 
-[![Version](https://img.shields.io/badge/version-1.9.5-brightgreen)](https://open-vsx.org/extension/hasugoii/agent-auto-approve) [![Open VSX](https://img.shields.io/badge/Open%20VSX-Install-blue)](https://open-vsx.org/extension/hasugoii/agent-auto-approve) [![Antigravity](https://img.shields.io/badge/IDE-Antigravity-black)](https://www.antigravity.dev)
+[![Version](https://img.shields.io/badge/version-1.9.6-brightgreen)](https://open-vsx.org/extension/hasugoii/agent-auto-approve) [![Open VSX](https://img.shields.io/badge/Open%20VSX-Install-blue)](https://open-vsx.org/extension/hasugoii/agent-auto-approve) [![Antigravity](https://img.shields.io/badge/IDE-Antigravity-black)](https://www.antigravity.dev)
 
 **[English](#english) · [Tiếng Việt](#tiếng-việt) · [中文](#中文) · [日本語](#日本語)**
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.9.6 (2026-03-01) — Structural Button Detection
+
+- 🛡️ **4-layer whitelist** — Completely redesigned click detection: tag validation → role exclusion → per-element dropdown ancestor check → exact text match
+- 🎯 **Per-element ancestor check** — walks 15 parent levels checking 14 class patterns + 5 ARIA roles to detect dropdowns, menus, popups, and suggestion widgets
+- ✅ **Exact text match** — `/run` no longer matches `run` pattern (was substring match, now exact)
+- 🏷️ **Tag validation** — only clicks `<button>`, `<a>`, or `[role=button]` elements, not `<div>`/`<li>`/`<span>`
+- 🔒 **Fixes slash command and @mention false clicks** — dropdown items are rejected at 3 independent layers
+
 ## v1.9.5 (2026-03-01) — Streamlined Click Patterns
 
 - 🎯 **10 essential patterns** — Reduced from 24 to 10 focused defaults: Run, Accept, Accept all, Allow, Always Allow, Keep Waiting, Retry, Continue, Allow Once, Allow This Con
