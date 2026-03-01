@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.9.7 (2026-03-01) — Event-Based Typing Guard + Floating Overlay Detection
+
+- 🎧 **Keydown event listener** — Real-time detection of `/` and `@` keystrokes with 5-second debounce (was: 2s polling that lost track when focus left input)
+- 🎯 **Floating overlay detection** — Checks if clicked element is inside a `position:absolute/fixed` container (catches unknown dropdown classes), with workbench panel exclusions
+- 🔒 **Root cause fixed** — Slash command dropdown click was caused by focus leaving input → old polling returned false → extension clicked item
+
 ## v1.9.6 (2026-03-01) — Structural Button Detection
 
 - 🛡️ **4-layer whitelist** — Completely redesigned click detection: tag validation → role exclusion → per-element dropdown ancestor check → exact text match
