@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.9.9 (2026-03-01) — ✅ Real Fix: CDP Permission Script
+
+- 🔍 **Root cause found** — Slash command false clicks came from `buildPermissionScript()` in `extension.js`, NOT from `compositor.js`. Two click systems run in parallel; only compositor was being fixed (v1.9.2-v1.9.7)
+- 🎧 **Keystroke listener installed** — `__lastKeystrokeTime` was checked but never set → typing guard was always bypassed
+- ⏱️ **Slash/mention 5s debounce** — Same protection added to CDP Permission script
+- 🚫 **Removed `cursor-pointer` bypass** — `isApprovalDialog()` no longer auto-approves elements with `cursor-pointer` class. Now requires actual reject sibling button
+
+## v1.9.8 (2026-03-01) — Diagnostic Build
+
+- 🔍 DOM diagnostic logging added to identify false click source (temporary, removed in v1.9.9+)
+
 ## v1.9.7 (2026-03-01) — Event-Based Typing Guard + Floating Overlay Detection
 
 - 🎧 **Keydown event listener** — Real-time detection of `/` and `@` keystrokes with 5-second debounce (was: 2s polling that lost track when focus left input)
