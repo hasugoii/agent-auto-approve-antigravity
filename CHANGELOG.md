@@ -1,5 +1,72 @@
 # Changelog
 
+## v1.9.22 (2026-03-02) — 🔍 Diagnostic Mode Toggle
+
+- 🔍 **Diagnostic Mode toggle** — Settings Panel → Advanced → ON/OFF switch to enable `diag:{}` logging
+- 🧹 **Zero overhead when OFF** — All diagnostic tracking code wrapped in `DIAG_MODE` conditional
+- ⚙️ **Persisted via globalState** — Toggle survives IDE restarts
+- 📡 **HTTP Live Sync** — Diagnostic mode exposed to compositor via HTTP config endpoint
+
+## v1.9.21 (2026-03-02) — ✅ Accept All Definitive Fix
+
+- 🎯 **`closestClickable()` depth 5→10** — Accept All text in `<strong>` tag nested deep under `<button>` — now traverses 10 levels to find clickable parent
+- ✅ **`isApprovalDialog()` accept whitelist** — Buttons with text containing "accept" bypass reject-sibling requirement (Accept All appears standalone in Antigravity)
+- 📊 **Diagnosed via `diag:{}`** — `not-clickable:strong` and `approval-guard` rejection codes pinpointed exact root causes
+
+## v1.9.20 (2026-03-02) — Overlay Fix + CDP Timeout
+
+- 🚫 **Removed `overlay` from blocklists** — Both `isApprovalDialog()` and `isInsideDropdownOrMenu()` incorrectly blocked buttons in overlay-classed containers
+- ⏱️ **CDP `_evaluate` timeout 2s→5s** — 30KB compositor script failed injection on complex workspace pages
+
+## v1.9.19 (2026-03-01) — Deep Diagnostic
+
+- 🔍 **`diag:{}` return codes** — Permission script returns JSON with rejection reasons: `approval-guard`, `not-clickable:<tag>`, `zero-size`
+- 📊 **`[CDP-Perm-DIAG]` logging** — All non-null results logged to Output channel for debugging
+
+## v1.9.18 (2026-03-01) — Anti-Spam CDP Dialog
+
+- 🔕 **`cdp-offline-notified` flag** — CDP offline dialog shows only once per offline transition
+- 🔄 **Auto-reset** — Flag resets when CDP comes back online, re-enabling the dialog for future outages
+
+## v1.9.17 (2026-03-01) — CDP Setup Dialog Restored
+
+- ⚠️ **Actionable dialog when CDP offline** — Shows "Auto-Fix CDP" + "Setup Guide" buttons even when `cdpSetupDone=true`
+- 🔧 **Replaced silent status bar** — Previously only showed status bar warning after first setup, now shows dialog
+
+## v1.9.16 (2026-03-01) — e.isTrusted Fix
+
+- 🔒 **`e.isTrusted` guard** — Keystroke listener only tracks real user keydown events, ignoring synthetic events from agent text generation
+- 🐛 **Fixed perpetual typing guard** — Agent writing code dispatched synthetic keystrokes → typing guard stayed active forever → no buttons clicked
+
+## v1.9.15 (2026-03-01) — Diagnostic Build
+
+- 🔍 Diagnostic logging + `e.isTrusted` check added to trace Accept All behavior (temporary)
+
+## v1.9.14 (2026-03-01) — 3 Bug Fixes
+
+- 🐛 **`isBackgroundMode` reference error** — Dead code from v1.8.8 BG removal crashed extension startup
+- 🔧 **Health check null** — `evaluateOnAllPages` too strict filter skipped valid results
+- 📊 **False click counting** — `checkPermissionButtons` counted non-click results as clicks
+
+## v1.9.13 (2026-03-01) — Debug: User Click Capture
+
+- 🔍 **User click capture** — Added click event listener logging to identify exactly which buttons users interact with and which layer rejects them
+
+## v1.9.12 (2026-03-01) — Debug: Targeted Reject Logging
+
+- 🔍 **Reject logging** — Each compositor layer now logs WHY it rejected a button (tag, role, dropdown ancestor, text mismatch)
+
+## v1.9.11 (2026-03-01) — ✅ Accept All Fix: startsWith
+
+- 🎯 **startsWith for ≥5 char patterns** — `"accept all"` now matches `"accept all changes"` via `startsWith` instead of exact `===`
+- 🔒 **Exact match for <5 chars** — Short patterns like `"run"` still use exact match to prevent `/run` false positives
+- 🧹 **Cleaned DIAG logging** — Removed leftover diagnostic logging from v1.9.8
+
+## v1.9.10 (2026-03-01) — ✅ Accept All Regression Fix
+
+- 🔄 **Tiered `isApprovalDialog()`** — 3-tier logic: (1) reject sibling → allow all, (2) `<button>` not in dropdown → allow, (3) non-button → block
+- 🐛 **Fix v1.9.9 regression** — `cursor-pointer` bypass removal was too aggressive, blocking all standalone `<button>` elements
+
 ## v1.9.9 (2026-03-01) — ✅ Real Fix: CDP Permission Script
 
 - 🔍 **Root cause found** — Slash command false clicks came from `buildPermissionScript()` in `extension.js`, NOT from `compositor.js`. Two click systems run in parallel; only compositor was being fixed (v1.9.2-v1.9.7)
