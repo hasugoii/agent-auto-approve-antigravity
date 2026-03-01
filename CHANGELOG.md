@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.9.25 (2026-03-02) — 🗑️ Remove Telegram Dead Code
+
+- 🗑️ **Removed all Telegram code** — require, variables, globalState init, bridge start, command registrations, 4 functions (~120 lines)
+- 🗑️ **Deleted `telegram-bridge.js`** — file no longer needed
+- 🧹 **Clean logs** — No more `[Telegram] Configured/Starting/Bridge started` spam
+
 ## v1.9.24 (2026-03-02) — 📋 Unified Click Log
 
 - 📋 **Always-on click log** — Rejected buttons with reasons logged to History & Data (no toggle needed)
