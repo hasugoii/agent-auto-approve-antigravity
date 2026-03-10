@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.9.26 (2026-03-11) — 🔧 Fix Auto-Scroll Not Reaching Last Button
+
+- 🐛 **Fix auto-scroll missing buttons** — When multiple command runs were present, auto-scroll only scrolled a nested code output container instead of the main conversation scroll
+- 🔄 **Scroll all containers** — `findDeepestScrollable()` → `findAllScrollables()` — scrolls ALL scrollable containers simultaneously instead of only the deepest one
+- 📁 **File:** `compositor.js` (autoScroll function)
+
 ## v1.9.25 (2026-03-02) — 🗑️ Remove Telegram Dead Code
 
 - 🗑️ **Removed all Telegram code** — require, variables, globalState init, bridge start, command registrations, 4 functions (~120 lines)
